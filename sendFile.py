@@ -28,7 +28,6 @@ def copy():
 
     ssh_client.close()
     
-    print("Done copying from remote")
 
 
 def get_new_files(local_directory, copy_to_remote, copied_to_remote):
@@ -39,7 +38,7 @@ def get_new_files(local_directory, copy_to_remote, copied_to_remote):
         if file not in copied_to_remote:
             copy_to_remote.append(file)
             
-    print(copy_to_remote)
+    print(copy_to_remote[0])
     
 def job():
     
@@ -62,20 +61,23 @@ def job():
         sftp_client.put(local_file_path, remote_file_path)
         copy_to_remote.remove(file)
         copied_to_remote.append(file)
+        if not copy_to_remote:
+            print("Transfer complete")
+            exit()
     
     sftp_client.close()
     ssh_client.close()
     
     
 def main():
-    print("process start")
+    print("Starting backup")
     
     schedule.every().second.do(job)
 
     while True:
         schedule.run_pending()
         time.sleep(1)
-    
+
     
 if __name__ == "__main__":
     main()
