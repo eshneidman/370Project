@@ -52,13 +52,13 @@ def job():
     #Connect to client 
     ssh_client = paramiko.SSHClient()
     ssh_client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-    ssh_client.connect(hostname='dragonfly.cs.colostate.edu', username='emmars', password='dexter1234554321')
+    ssh_client.connect(hostname='dragonfly.cs.colostate.edu', username='rblocker', password='RCB+thecsbuilding')
     sftp_client = ssh_client.open_sftp()
 
     #Copy files from local to remote
     for file in copy_to_remote:
         local_file_path = os.path.join(local_directory, file)
-        remote_file_path = '/s/bach/l/under/emmars/Filebackup/' + file
+        remote_file_path = '/s/bach/j/under/rblocker/fileBackup/' + file
         sftp_client.put(local_file_path, remote_file_path)
         copy_to_remote.remove(file)
         copied_to_remote.append(file)
