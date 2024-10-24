@@ -6,14 +6,14 @@ import time
 copy_to_remote = []
 copied_to_remote = []
 
-remote_directory = '/s/bach/l/under/emmars/BackupFiles/'
-local_directory = '/Users/emmashneidman/BackupFiles/'
+remote_directory = 'remote_dir'
+local_directory = 'local_dir'
 
 def copy():
     # Connect to client
     ssh_client = paramiko.SSHClient()
     ssh_client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-    ssh_client.connect(hostname = 'moscow.cs.colostate.edu', username='emmars', password='dexter1234554321')
+    ssh_client.connect(hostname = 'moscow.cs.colostate.edu', username='username', password='password')
     sftp_client = ssh_client.open_sftp()
     
     #Change directory to BackupFiles folder
@@ -51,7 +51,7 @@ def job():
     #Connect to client 
     ssh_client = paramiko.SSHClient()
     ssh_client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-    ssh_client.connect(hostname='dragonfly.cs.colostate.edu', username='rblocker', password='RCB+thecsbuilding')
+    ssh_client.connect(hostname='dragonfly.cs.colostate.edu', username='username', password='password')
     sftp_client = ssh_client.open_sftp()
 
     #Copy files from local to remote
